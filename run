@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]] ; then
+    echo 'Please provide the block device name that you intend to be used by MapR container, e.g. /dev/xvdf'
+    echo 'You can find available block devices by using "lsblk" command on a Linux system.'
+    exit 0
+fi
+
+blk_dev=$1
+
+rm -rf /tmp/maprdemo  
+mkdir -p /tmp/maprdemo/hive /tmp/maprdemo/zkdata /tmp/maprdemo/pid /tmp/maprdemo/logs /opt/mapr/drill/drill-1.8.0/logs /opt/mapr/drill/drill-1.8.0/pid
+chmod -R 777 /tmp/maprdemo/hive /tmp/maprdemo/zkdata /tmp/maprdemo/pid /tmp/maprdemo/logs /opt/mapr/drill/drill-1.8.0/logs /opt/mapr/drill/drill-1.8.0/pid
+
+docker run -d -e HOST_BLOCK_DEVICE=$blk_dev --device=$blk_dev --privileged=true -p 22222:22 -p 31010:31010 -p 8047:8047 -p 8443:8443 -p 19888:19888 -p 8088:8088 jameshtsun/mapr5.2:light
+
