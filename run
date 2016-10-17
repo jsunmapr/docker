@@ -8,6 +8,16 @@ fi
 
 blk_dev=$1
 
+bdev=${blk_dev#/dev/}
+
+ifdev=`lsblk | grep $bdev`
+
+if [ -z "$ifdev" ]; then
+    echo "Can't find provided block device name on this host: $dev"
+    echo 'You can find available block devices by using "lsblk" command on a Linux system.'
+    exit
+fi
+
 rm -rf /tmp/maprdemo  
 mkdir -p /tmp/maprdemo/hive /tmp/maprdemo/zkdata /tmp/maprdemo/pid /tmp/maprdemo/logs /opt/mapr/drill/drill-1.8.0/logs /opt/mapr/drill/drill-1.8.0/pid
 chmod -R 777 /tmp/maprdemo/hive /tmp/maprdemo/zkdata /tmp/maprdemo/pid /tmp/maprdemo/logs /opt/mapr/drill/drill-1.8.0/logs /opt/mapr/drill/drill-1.8.0/pid
