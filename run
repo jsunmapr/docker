@@ -18,5 +18,5 @@ if [ -z "$ifdev" ]; then
     exit
 fi
 
-docker run -d -e HOST_BLOCK_DEVICE=$blk_dev --device=$blk_dev --privileged=true -p 22222:22 -p 31010:31010 -p 8047:8047 -p 8443:8443 -p 19888:19888 -p 8088:8088 jameshtsun/mapr5.2:light
+docker run -d -e HOST_BLOCK_DEVICE=$blk_dev --device=$blk_dev --privileged=true -p 22222:22 -p 31010:31010 -p 8047:8047 -p 8443:8443 -p 19888:19888 -p 8088:8088 -p 8888:8888 jameshtsun/mapr5.2:light
 
