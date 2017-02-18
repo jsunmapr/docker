@@ -18,4 +18,4 @@ if [ -z "$ifdev" ]; then
     exit
 fi
 
-docker run -d -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e HOST_BLOCK_DEVICE=$blk_dev -e SSH_USER_PASSWORD=$passwd --device=$blk_dev:$blk_dev --privileged=true -p 22222:22 -p 3000:3000 -p 5601:5601 -p 4242:4242 -p 31010:31010 -p 8047:8047 -p 8443:8443 -p 19888:19888 -p 8088:8088 -p 9443:9443 -p 8888:8888 -p 8090:8090 -p 19890:19890 -p 9083:9083 -p 10000:10000 jameshtsun/mapr520:base
+docker run -d -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e HOST_BLOCK_DEVICE=$blk_dev -e SSH_USER_PASSWORD=$passwd --device=$blk_dev:$blk_dev --privileged=true -p 22222:22 -p 3000:3000 -p 5601:5601 -p 4242:4242 -p 31010:31010 -p 8047:8047 -p 8443:8443 -p 19888:19888 -p 8088:8088 -p 9443:9443 -p 8888:8888 -p 8090:8090 -p 19890:19890 -p 9083:9083 -p 10000:10000 maprpartners/mapr520:base
